@@ -1,0 +1,72 @@
+<h1>Projetos</h1>
+
+<ul class="tree">
+    <li>
+       <span>backend</span> 
+        <ul>
+            <li>
+                <span>app</span>
+                <ul>
+                    <li>Produtos.js</li>
+                    <li>Usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li>
+                <span>config</span>
+                <ul>
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span>frontend</span>
+        <ul>
+            <li>
+                <span>public</span>
+                <ul>
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+
+<script>
+
+    document.querySelectorAll('span').forEach(element => {        
+        element.addEventListener('click', function(){
+            element2 = element.nextElementSibling
+            if( element2.style.display === "none")
+                element2.style.display = "block"
+            else{
+                element2.style.display = "none"
+            }
+        }
+    )
+    })
+    
+
+
+
+    // document.querySelectorAll('a').forEach(link =>{
+    //             const conteudo = document.getElementById('conteudo')
+    //         link.onclick = function(e){
+    //             e.preventDefault()
+                
+    //             fetch(link.href)
+    //                 .then(resp => resp.text())
+    //                 .then(html => conteudo.innerHTML = html)
+    //         }
+    //     })
+
+
+
+</script>

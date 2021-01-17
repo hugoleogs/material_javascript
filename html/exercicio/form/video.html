@@ -1,10 +1,12 @@
-<video id="meuVideo" width="800" height="450" controls autoplay controlsList="nodownload">
+<video id="meuVideo" width="800" height="450" /*controls*/ autoplay controlsList="nodownload">
     <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
     Seu browser não suporta a tag de vídeo.
 </video>
 
 <div wm-progresso="meuVideo" class="progresso">
-    <div id="barra"></div>
+    <div id="barra">
+        <div id="label">0%</div>
+    </div>
 </div>
 
 <div>
@@ -15,7 +17,7 @@
 <style>
 
     body{
-        background-color: #449;
+        background-color: #00000049;
     }
 
     .progresso {
@@ -33,6 +35,9 @@
         font-size: 14px;
         width: 0%;
     }
+    #label{
+        text-align: left;
+    }
 </style>
 
 <script>
@@ -43,9 +48,11 @@
        if (myVideo.paused) {
             myVideo.play();
             console.log('Video Playing');
+            move(myVideo)
         } else {
             myVideo.pause();
             console.log('Video Paused');
+            move(myVideo)
         }
 
     }
@@ -56,11 +63,27 @@
         if (!myVideo.paused) {
             myVideo.pause();
             console.log('Video Pause');
+            move(myVideo)
         } else {
             myVideo.play();
             console.log('Video Play');
+            move(myVideo)
         }
 
     }
+
+    function move(myVideo) {
+    var elem = document.getElementById("barra");
+    var id = setInterval(frame, 10);
+    function frame() {
+        width = (myVideo.currentTime/myVideo.duration)*100
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            elem.style.width = width + '%';
+            document.getElementById("label").innerHTML = (width * 1).toFixed(2) + '%';
+        }
+    }
+}
 
 </script>

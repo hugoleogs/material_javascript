@@ -1,0 +1,66 @@
+<video id="meuVideo" width="800" height="450" controls autoplay controlsList="nodownload">
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
+    Seu browser não suporta a tag de vídeo.
+</video>
+
+<div wm-progresso="meuVideo" class="progresso">
+    <div id="barra"></div>
+</div>
+
+<div>
+    <button wm-play="meuVideo" onclick="playVid()">Play</button>
+    <button wm-pause="meuVideo" onclick="pauseVid()">Pause</button>
+</div>
+
+<style>
+
+    body{
+        background-color: #449;
+    }
+
+    .progresso {
+        height: 20px;
+        width: 500px;
+        border: solid 1px #444;
+        margin: 20px;
+    }
+
+    .progresso>div {
+        background-color: red;
+        color: #fff;
+        height: 100%;
+        text-align: right;
+        font-size: 14px;
+        width: 0%;
+    }
+</style>
+
+<script>
+
+    function playVid(){
+
+       let myVideo = document.getElementById('meuVideo')
+       if (myVideo.paused) {
+            myVideo.play();
+            console.log('Video Playing');
+        } else {
+            myVideo.pause();
+            console.log('Video Paused');
+        }
+
+    }
+
+    function pauseVid(){
+
+        let myVideo = document.getElementById('meuVideo')
+        if (!myVideo.paused) {
+            myVideo.pause();
+            console.log('Video Pause');
+        } else {
+            myVideo.play();
+            console.log('Video Play');
+        }
+
+    }
+
+</script>

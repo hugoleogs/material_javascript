@@ -49,6 +49,10 @@
 
 <style>
 
+    body  {
+        background: black;
+    }
+
     .circular{
         width: 513px;
         background-color: #444;
@@ -81,41 +85,41 @@
 
 <script>
 
-    function mover(elem, inicio, fim, passo, callback){
-        const novoInicio = inicio - passo
-        if(novoInicio >= fim) {
-            elem.style.left = novoInicio + 'px'
-            setTimeout(() => mover(elem, novoInicio, fim, passo, callback), 8)
-        }else {
-            callback()
-        }
+function moverFotos(fotos, foto, ini, fim, passo, callback){
+    if(ini - passo >= fim){
+        foto.style.display = 'block'
+        foto.style.left = ini + 'px'
+        setTimeout(()=> moverFotos(fotos, foto, ini - passo, fim, passo, callback),8)
+    }else{
+
+      //  debugger        
+        ini = innerWidth
+        callback(fotos, foto, ini, fim)
     }
+}
 
-    function slider() {
-        const elementos = document.querySelectorAll('[wm-slider] > p')
-        const slides = Array.from(elementos)
-        exibirSlide(slides, slides[0])
+function pegarTodasAsFotos(){
+
+    const fotos = Array.from(document.querySelectorAll('[wm-slider] > p'))
+    const ini = innerWidth
+    const final = - 1000
+    enviarFotos(fotos, fotos[0], ini, final)
+
+}
+
+function enviarFotos(fotos, atual, ini, final){
+    moverFotos(fotos,atual, ini, final, 5, proximaFoto)
+}
+
+function proximaFoto(fotos, atual, ini, final){
+    let proximo = fotos.indexOf(atual) + 1
+    if (proximo < fotos.length){
+        enviarFotos(fotos, fotos[proximo], ini, final)
+    }else{
+        enviarFotos(fotos, fotos[0], ini, final)
     }
+}
 
-    function exibirSlide(slides, slide){
-        slide.style.display = 'block'
-
-        const inicio = innerWidth
-        const fim = - slide.clientWidth
-
-        slide.style.left = `${inicio}px`
-
-        mover(slide, inicio, fim, 5, () => {
-            slide.style.display = 'none'
-            exibirSlide(slides, getProximo(slides, slide))
-        })
-    }
-
-    function getProximo(lista, atual){
-        const i = lista.indexOf(atual) + 1
-        return i < lista.length ? lista[i] : lista [0]
-    }
-
-    slider()
+pegarTodasAsFotos()
 
 </script>

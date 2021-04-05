@@ -13,33 +13,49 @@
     <div id='conteudo'></div>
 
     <script>
-        const pessoas = [
-            { nome: 'Ana', nota: 9.1 },
-            { nome: 'Bianca', nota: 8.4 },
-            { nome: 'Carlos', nota: 7.6 },
-            { nome: 'Julia', nota: 9.7 }
-        ]
 
-        const linhas = pessoas.map(pessoa => {
-            const tdNome = document.createElement('td')
-            tdNome.innerHTML = pessoa.nome
+        $(document).ready(function(){
 
-            const tdNota = document.createElement('td')
-            tdNota.innerHTML = pessoa.nota
-
-            const tr = document.createElement('tr')
             
-            tr.appendChild(tdNome)
-            tr.appendChild(tdNota)
+            const pessoas = [
+                { nome: 'Ana', nota: 9.1 },
+                { nome: 'Bianca', nota: 8.4 },
+                { nome: 'Carlos', nota: 7.6 },
+                { nome: 'Julia', nota: 9.7 }
+            ]
+            
+            // const linhas = pessoas.map(pessoa => {
+            //     const tdNome = document.createElement('td')
+            //     tdNome.innerHTML = pessoa.nome
+                
+            //     const tdNota = document.createElement('td')
+            //     tdNota.innerHTML = pessoa.nota
+                
+            //     const tr = document.createElement('tr')
+                
+            //     tr.appendChild(tdNome)
+            //     tr.appendChild(tdNota)
+                
+            //     return tr
+            // })
+            
+            // const tabela = document.createElement('table')
+            // linhas.forEach(linha => tabela.appendChild(linha))
+            
+            // $('#conteudo').append(tabela)
 
-            return tr
+            const linhas = pessoas.map(pessoa => {
+                const tdNome = $('<td>').html(pessoa.nome)
+                const tdNota = $('<td>').html(pessoa.nota)
+                return $('<tr>').append(tdNome).append(tdNota)
+            })
+
+            const tabela = $('<table>').append(linhas)
+                .css('border', 'solid 5px')
+
+            $('#conteudo').append(tabela)
+            
         })
-
-        const tabela = document.createElement('table')
-        linhas.forEach(linha => tabela.appendChild(linha))
-
-        $('#conteudo').append(tabela)
-
 
     </script>
 </body>

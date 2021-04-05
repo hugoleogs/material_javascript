@@ -19,7 +19,27 @@
             { nome: 'Carlos', nota: 7.6 },
             { nome: 'Julia', nota: 9.7 }
         ]
-        
-        // ...
+
+        const linhas = pessoas.map(pessoa => {
+            const tdNome = document.createElement('td')
+            tdNome.innerHTML = pessoa.nome
+
+            const tdNota = document.createElement('td')
+            tdNota.innerHTML = pessoa.nota
+
+            const tr = document.createElement('tr')
+            
+            tr.appendChild(tdNome)
+            tr.appendChild(tdNota)
+
+            return tr
+        })
+
+        const tabela = document.createElement('table')
+        linhas.forEach(linha => tabela.appendChild(linha))
+
+        $('#conteudo').append(tabela)
+
+
     </script>
 </body>
